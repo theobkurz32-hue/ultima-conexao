@@ -1,0 +1,37 @@
+name: Verificar aplicação publicada e PWA offline
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-published
+  cancel-in-progress: false
+
+jobs:
+  verify-published:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PLAYWRIGHT_BASE_URL: https://theobkurz32-hue.github.io/ultima-conexao/
+      PLAYWRIGHT_TEST_PWA: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Verificar fluxos publicados e retomada offline
+        run: npm run test:e2e
+      - name: Preservar evidências em caso de falha
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-pwa-test-results
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 7

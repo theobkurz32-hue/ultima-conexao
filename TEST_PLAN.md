@@ -79,3 +79,11 @@ O build integrado registrou aproximadamente 471,94 kB de JavaScript principal (1
 ## Revisão para publicação (14/11/2026)
 
 Adicionado teste de regressão em jsdom para os botões de notificações e central de controle no modo iOS standalone simulado. As quatro suítes passaram com 22 testes. Os fluxos Playwright agora preservam o prefixo do Pages. Não equivale a teste em um iPhone real.
+
+## Execução efetiva no GitHub Actions
+
+Em 14/11/2026, no commit `72b7703`, passaram 22 testes em quatro suítes, validação narrativa, TypeScript, build com `/ultima-conexao/` e checagem de recursos. Os quatro fluxos Playwright também passaram em Chromium real do CI (desktop 1440×1000 e viewport mobile 390×844). O viewport mobile não comprova Safari/iPhone real.
+
+Execução: https://github.com/theobkurz32-hue/ultima-conexao/actions/runs/43547922600
+
+A configuração do Pages ainda retorna `Pages site not found`, portanto a implantação não foi concluída. A suíte separada `Verificar aplicação publicada e PWA offline` foi preparada para verificar a URL pública após uma implantação bem-sucedida; não foi executada ainda.
