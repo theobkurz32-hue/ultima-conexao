@@ -19,13 +19,13 @@ Resultados efetivamente executados na integração de 14/11/2026. Um teste escri
 
 | Verificação | Resultado da integração |
 | --- | --- |
-| Testes unitários, estado, persistência e interface React em jsdom | Aprovados: 22 testes em quatro arquivos. Destes, 18 cobrem estado/narrativa/persistência e três renderizam o `PhoneShell` real em jsdom. |
+| Testes unitários, estado, persistência e interface React em jsdom | Aprovados: 22 testes em quatro arquivos. Destes, 18 cobrem estado/narrativa/persistência e quatro renderizam o `PhoneShell` real em jsdom. |
 | Validação narrativa | Aprovada: `npm run validate:story`. |
 | Build de produção | Aprovado: `npm run build`, incluindo TypeScript e geração de manifesto/service worker. |
 | Inspeção estática do build raiz | Aprovada: `npm run verify:build`. Não representa navegação em navegador. |
 | Build com prefixo de projeto | Aprovados: `VITE_BASE_PATH=/ultima-conexao/ npm run build` e `VITE_BASE_PATH=/ultima-conexao/ npm run verify:build`; caminhos sob o prefixo verificados estaticamente. |
-| Navegação em Chromium | Não executada neste ambiente: ferramenta `cua_repl` indisponível no ambiente gerenciado. A suíte Playwright contém dois fluxos em duas resoluções e está configurada para execução no CI. |
-| Offline após instalação do SW | Não executado: build e inspeção estática sem erro não comprovam navegação offline. |
+| Navegação em Chromium | Aprovados no GitHub Actions: quatro casos reais, dois fluxos em desktop 1440×1000 e viewport mobile 390×844. [Execução](https://github.com/theobkurz32-hue/ultima-conexao/actions/runs/43547922600/attempts/3). Nenhum navegador foi iniciado no ambiente Cloud sem `cua_repl`. |
+| Offline após instalação do SW | Aprovado na URL publicada em Chromium desktop/mobile: cache de produção, recarga sem rede, evidência e notas preservadas, módulo de Fotos e SVG carregados pelo service worker. [Execução](https://github.com/theobkurz32-hue/ultima-conexao/actions/runs/43548576366). |
 | Safari/iPhone real | Não executado: dispositivo real não disponibilizado. |
 | PWA instalada no iOS | Não executado: instalação real não disponibilizada. |
 | Android real | Não executado: dispositivo real não disponibilizado. |
@@ -33,9 +33,9 @@ Resultados efetivamente executados na integração de 14/11/2026. Um teste escri
 | Auditoria com leitor de tela | Não executada nesta entrega. |
 | Métricas de 60 fps e aparelho intermediário | Não medidas. |
 | Playtest externo / duração do jogo | Não executado. |
-| Publicação real no GitHub Pages | Não executada sem repositório autorizado/configurado. |
+| Publicação real no GitHub Pages | Concluída: [jogo publicado](https://theobkurz32-hue.github.io/ultima-conexao/). Verify/build/deploy aprovados na tentativa 3 da [execução](https://github.com/theobkurz32-hue/ultima-conexao/actions/runs/43547922600/attempts/3); página e 14 recursos responderam HTTP 200. |
 
-Os três testes React renderizam componentes reais em jsdom e verificam código incorreto/correto, abertura dos nove aplicativos, preservação de evidências, evento condicional, retorno ao registro de origem e anotações digitadas com persistência e retomada. jsdom simula o DOM; não mede layout, gestos físicos, renderização visual ou comportamento real do Safari.
+Os quatro testes React renderizam componentes reais em jsdom e verificam código incorreto/correto, abertura dos nove aplicativos, preservação de evidências, evento condicional, retorno ao registro de origem, anotações digitadas com persistência e retomada e os acessos a notificações/controles no modo iOS standalone simulado. jsdom simula o DOM; não mede layout, gestos físicos, renderização visual ou comportamento real do Safari.
 
 ## Casos de aceitação da fundação
 
@@ -74,7 +74,7 @@ Verificar retrato e paisagem, safe areas, teclado aberto, aumento de texto, redu
 
 Registrar tamanho inicial comprimido, tempo de interatividade, memória ao abrir fotos e rolagem em conversa extensa. Somente aplicar virtualização e otimizações adicionais onde as medições demonstrarem benefício. Não interpretar um bundle compilado ou animações CSS como comprovação de 60 fps.
 
-O build integrado registrou aproximadamente 471,94 kB de JavaScript principal (148,56 kB gzip) e 48,64 kB de CSS (11,36 kB gzip). O precache gerado contém 29 entradas, totalizando cerca de 599,89 KiB. São medições de tamanho do artefato, não de velocidade de download, fluidez, uso de memória ou execução em aparelho intermediário.
+A medição local anterior à revisão final de publicação registrou aproximadamente 471,94 kB de JavaScript principal (148,56 kB gzip) e 48,64 kB de CSS (11,36 kB gzip). O precache gerado contém 29 entradas, totalizando cerca de 599,89 KiB. São medições de tamanho do artefato, não de velocidade de download, fluidez, uso de memória ou execução em aparelho intermediário.
 
 ## Revisão para publicação (14/11/2026)
 
@@ -86,4 +86,6 @@ Em 14/11/2026, no commit `72b7703`, passaram 22 testes em quatro suítes, valida
 
 Execução: https://github.com/theobkurz32-hue/ultima-conexao/actions/runs/43547922600
 
-A configuração do Pages ainda retorna `Pages site not found`, portanto a implantação não foi concluída. A suíte separada `Verificar aplicação publicada e PWA offline` foi preparada para verificar a URL pública após uma implantação bem-sucedida; não foi executada ainda.
+A tentativa 3 da execução acima concluiu `verify`, `build` e `deploy`. A aplicação está disponível em https://theobkurz32-hue.github.io/ultima-conexao/; a inspeção HTTP confirmou a página e 14 recursos, manifesto standalone com escopo/start_url corretos.
+
+A suíte separada `Verificar aplicação publicada e PWA offline` passou na execução https://github.com/theobkurz32-hue/ultima-conexao/actions/runs/43548576366: seis testes reais na URL de produção, em Chromium desktop e viewport mobile. Incluem os quatro fluxos de navegação mais dois testes de cache, recarga sem rede, evidência/anotações restauradas e abertura offline do módulo de Fotos com imagem fornecida pelo service worker. Todos passaram sem retry (25,4 segundos na etapa de testes). Nenhum desses resultados comprova instalação real em iPhone, Android ou Safari.

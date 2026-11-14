@@ -4,6 +4,10 @@ Um telefone encontrado. Uma vida interrompida. Uma investigação ficcional ambi
 
 Esta entrega é a **fundação executável da Fase 1**, com conteúdo inicial para explorar a interface. Não é a versão completa de três a cinco horas: a expansão da narrativa, os aplicativos multimídia e os três finais pertencem às fases seguintes.
 
+**[Jogar agora](https://theobkurz32-hue.github.io/ultima-conexao/)** · [Código no GitHub](https://github.com/theobkurz32-hue/ultima-conexao)
+
+No iPhone, abra o jogo no Safari e escolha **Compartilhar → Adicionar à Tela de Início** para usá-lo como app quando suportado.
+
 Este pacote contém o código-fonte público da entrega. A entrada React é `src/main.tsx`; o telefone virtual é composto em `src/os/PhoneShell.tsx`.
 
 ## Executar
@@ -69,7 +73,7 @@ VITE_BASE_PATH=/NOME-REPOSITORIO/ npm run verify:build
 
 O manifesto e os caminhos dos recursos acompanham esse prefixo. Não há roteamento por URL interna: abrir aplicativos altera o estado da simulação, preservando a URL de entrada do Pages.
 
-O pipeline está preparado; a publicação real exige um repositório GitHub acessível e Pages habilitado. Não se presume que configurar o workflow significa que uma publicação foi executada.
+A fundação está publicada em [https://theobkurz32-hue.github.io/ultima-conexao/](https://theobkurz32-hue.github.io/ultima-conexao/). A [execução de implantação](https://github.com/theobkurz32-hue/ultima-conexao/actions/runs/43547922600/attempts/3) concluiu testes, build e deployment com sucesso em 14/11/2026. A página e 14 recursos públicos responderam HTTP 200; os limites de instalação e dispositivos reais estão registrados em [TEST_PLAN.md](TEST_PLAN.md).
 
 ## Atualizações e saves
 
@@ -83,8 +87,8 @@ Mantenha `package-lock.json` versionado e use `npm ci` no CI. Faça alterações
 - [Testes e limitações](TEST_PLAN.md)
 - [Estado da implementação](IMPLEMENTATION_STATUS.md)
 - [Licenças de assets](ASSET_LICENSES.md)
-- [Bíblia narrativa — contém spoilers de desenvolvimento](STORY_BIBLE.md)
-- [Grafo de evidências — contém spoilers de desenvolvimento](EVIDENCE_GRAPH.md)
+- [Documentação narrativa pública — sem a solução interna](STORY_BIBLE.md)
+- [Grafo narrativo inicial](EVIDENCE_GRAPH.md)
 
 Os documentos internos com a solução e segredos dos atos futuros não integram este pacote nem seu histórico Git. Uma experiência estática offline distribui os dados necessários ao conteúdo jogável: esses dados podem ser inspecionados.
 

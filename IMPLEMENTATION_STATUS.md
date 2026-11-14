@@ -2,6 +2,8 @@
 
 Versão de fundação: `0.1.0`. O objetivo desta entrega é a Fase 1 com dados e funções iniciais suficientes para explorar o telefone. A existência de tipos de domínio e planos narrativos não significa que todas as mecânicas futuras estejam implementadas.
 
+Aplicação publicada: [https://theobkurz32-hue.github.io/ultima-conexao/](https://theobkurz32-hue.github.io/ultima-conexao/). A [implantação no GitHub Actions](https://github.com/theobkurz32-hue/ultima-conexao/actions/runs/43547922600/attempts/3) terminou com sucesso; esta publicação continua sendo a fundação da Fase 1.
+
 ## Entregue no código
 
 | Área | Estado | Recorte |
@@ -11,8 +13,8 @@ Versão de fundação: `0.1.0`. O objetivo desta entrega é a Fase 1 com dados e
 | Tela inicial | Implementado | Grade, dock, widget e abertura dos aplicativos instalados. |
 | Navegação | Implementado no recorte | Voltar ao início, alternar aplicativos e manter instâncias abertas. |
 | Persistência | Implementado | IndexedDB, esquema v1, hidratação, exportação/importação validadas e reinício. |
-| PWA | Configurado no build | Manifesto, PNGs, service worker e cache dos recursos locais. Verificação offline real depende de teste de navegador. |
-| GitHub Pages | Preparado | Workflow de testes/build/deployment e cálculo do caminho base. Publicação real não executada sem repositório/Pages acessível. |
+| PWA | Publicada e offline verificado em Chromium | Manifesto standalone, ícones, cache e service worker. Recarga sem rede com progresso preservado e Fotos acessível passou em desktop e viewport mobile. Instalação real no iOS segue pendente. |
+| GitHub Pages | Publicado e verificado por HTTP | [Jogar](https://theobkurz32-hue.github.io/ultima-conexao/); testes, build e deployment aprovados no CI. Página e 14 recursos responderam HTTP 200 com prefixo correto. |
 | Conteúdo inicial | Implementado | Oito personagens, sete conversas e uma contradição inicial. |
 | Motor inicial | Implementado | Condições declarativas, eventos determinísticos e validação de referências/dependências. |
 | Investigação | Parcial | Preservar quatro evidências, consultar origens e escrever anotações. |
@@ -44,7 +46,7 @@ Não foi medida a duração do recorte com jogadores externos. Não se declara q
 
 ## Pendências por fase
 
-1. **Encerrar verificação da fundação:** testes integrados de estado/narrativa/persistência/React aprovados (21 testes), validação narrativa e build raiz aprovados. Navegação em navegador, Safari/iPhone real e funcionamento offline continuam pendentes. A lista efetiva de resultados fica em [TEST_PLAN.md](TEST_PLAN.md).
+1. **Completar verificação da fundação em dispositivos:** 22 testes de estado/narrativa/persistência/React e quatro casos Playwright em Chromium real do CI passaram; validação, build e publicação foram concluídos. Os seis testes da URL publicada passaram, incluindo retomada offline em Chromium desktop/mobile. Safari/iPhone real, instalação no dispositivo e acessibilidade com leitor de tela continuam pendentes. A lista efetiva de resultados fica em [TEST_PLAN.md](TEST_PLAN.md).
 2. **Fase 2:** consolidar prioridades de gestos, tratamento do teclado, busca indexada, páginas/pastas, estados de notificações e suspensão/retomada.
 3. **Fase 3:** ampliar recursos internos dos aplicativos, anexos, busca por registro e testes de links de evidência.
 4. **Fase 4:** capítulo demonstrativo com conclusão parcial avaliável por jogador externo, caminhos alternativos e teste de entendimento.
